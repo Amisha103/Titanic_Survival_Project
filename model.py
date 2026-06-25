@@ -30,3 +30,10 @@ model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
  
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+accuracy = accuracy_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+cr = classification_report(y_test, y_pred)
+print(f'Accuracy: {accuracy}')
+print(f'Confusion Matrix:\n{cm}')
+print(f'Classification Report:\n{cr}')
