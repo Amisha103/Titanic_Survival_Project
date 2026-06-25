@@ -37,3 +37,20 @@ cr = classification_report(y_test, y_pred)
 print(f'Accuracy: {accuracy}')
 print(f'Confusion Matrix:\n{cm}')
 print(f'Classification Report:\n{cr}')
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+from sklearn.neighbors import KNeighborsClassifier
+knn_model = KNeighborsClassifier(n_neighbors=5)
+knn_model.fit(X_train_scaled, y_train)
+y_pred_knn = knn_model.predict(X_test_scaled)
+
+accuracy_knn = accuracy_score(y_test, y_pred_knn)
+cm_knn = confusion_matrix(y_test, y_pred_knn)
+print(f'KNN Accuracy: {accuracy_knn}')
+print(f'KNN Confusion Matrix:\n{cm_knn}')
+print(f'KNN Classification Report:\n{classification_report(y_test, y_pred_knn)}')
+
