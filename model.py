@@ -24,6 +24,9 @@ y = df['survived']
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+
+#LOGISTIC REGRESSION
+
 from sklearn.linear_model import LogisticRegression
 model = LogisticRegression()
 model.fit(X_train, y_train)
@@ -43,6 +46,8 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
+#KNN
+
 from sklearn.neighbors import KNeighborsClassifier
 knn_model = KNeighborsClassifier(n_neighbors=5)
 knn_model.fit(X_train_scaled, y_train)
@@ -53,4 +58,18 @@ cm_knn = confusion_matrix(y_test, y_pred_knn)
 print(f'KNN Accuracy: {accuracy_knn}')
 print(f'KNN Confusion Matrix:\n{cm_knn}')
 print(f'KNN Classification Report:\n{classification_report(y_test, y_pred_knn)}')
+
+#NAIVE BAYES
+
+from sklearn.naive_bayes import GaussianNB
+model_NB = GaussianNB() 
+model_NB.fit(X_train, y_train)
+y_pred_NB = model_NB.predict(X_test)
+print(y_pred_NB)
+accuracy_NB = accuracy_score(y_test, y_pred_NB)
+cm_NB = confusion_matrix(y_test, y_pred_NB)
+print(f'Naive Bayes Accuracy: {accuracy_NB}')
+print(f'Naive Bayes Confusion Matrix:\n{cm_NB}')
+print(f'Naive Bayes Classification Report:\n{classification_report(y_test, y_pred_NB)}')
+
 
